@@ -10,5 +10,6 @@ namespace Services.Contracts
         Task<IEnumerable<Tag>> Get(CancellationToken cancellationtoken);
         Task<Tag> GetByName(string name, CancellationToken cancellationtoken);
         Task<IEnumerable<Category>> GetSubCategoriesByName(string name, CancellationToken cancellationtoken);
+        Task<IEnumerable<Category>> GetSubCategoriesByCategoryId(int categoryId, CancellationToken cancellationtoken);
     }
 }
