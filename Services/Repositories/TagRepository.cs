@@ -26,6 +26,16 @@ namespace Services.Repositories
                 .Include(row => row.Categories)
                 .SingleOrDefaultAsync(row => row.Name.Equals(name), cancellationtoken);
         }
+        
+        public async Task<IEnumerable<Category>> GetSubCategoriesByCategoryId(int categoryId, CancellationToken cancellationtoken)
+        {
+            return await TableNoTracking
+                .Include(row => row.Categories)
+                .Where(row => row.Categories.FirstOrDefault().Id.Equals(categoryId))
+                .SelectMany(row => row.Categories)
+                .Where(row => row.IsSubCategory)
+                .ToListAsync(cancellationtoken) ;
+        }
 
         public async Task<IEnumerable<Category>> GetSubCategoriesByName(string name, CancellationToken cancellationtoken)
         {
