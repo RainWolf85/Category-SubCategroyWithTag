@@ -40,5 +40,12 @@ namespace WebApi.Controllers
         {
             return await _tagRepository.GetSubCategoriesByName(tagName, cancellationtoken);
         }
+
+        //Categories/GetSubCategoriesByCategoryId?categoryId=1
+        [HttpGet("GetSubCategoriesByCategoryId")]
+        public async Task<IEnumerable<Category>> GetSubCategoriesByCategoryId(int categoryId, CancellationToken cancellationtoken)
+        {
+            return await _tagRepository.GetSubCategoriesByCategoryId(categoryId, cancellationtoken) ;
+        }
     }
 }
